@@ -1,0 +1,17 @@
+{
+    "AccountId": "INSERT YOUR ACEPROJECT ACCOUNTID", 
+    "UserName": "INSERT YOUR ACEPROJECT USERNAME", 
+    "Password": "INSERT YOUR ACEPROJECT PASSWORD",
+    
+    "Email": "INSERT EMAIL SENDER",
+    "EmailPassword": "INSERT EMAIL SENDER PASSWORD",
+
+    "CompanyEmail": "INSERT THE COMPANY EMAIL DOMAIN",
+
+    "HREmail": "INSERT HR EMAIL",
+    "EmailManagers": ["INSERT MANAGER EMAILS"],
+    
+    "ManagersToRemoveFromBilling": ["INSERT name.secondname (Name SecondName) OF MANAGERS TO BE REMOVED"],
+    
+    "PathToReport": "INSERT/PATH/TO/RelatorioAce.xlsx"
+}
