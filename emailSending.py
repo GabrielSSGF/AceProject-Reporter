@@ -30,7 +30,7 @@ def verificaHorario(tipoPeriodo):
         enviarEmailTipo("Aprovação", "")
 
 def verificaUnsubmittedUsers():
-    unsubmittedUsers = USER_CLASS.unsubmittedUsers
+    unsubmittedUsers = USER_CLASS.UNSUBMITTED_USERS
     if unsubmittedUsers:
         for user in unsubmittedUsers:
             enviarEmailTipo("Cobrança", user)
@@ -83,13 +83,13 @@ def setEmailStructure(remetente, destinatarios, assunto):
 def templateCobrancaColaborador(colaborador):
     colaborador = getUpperCaseUserName(colaborador)
     dataInicioFormatada, dataFimFormatada = DATE_CLASS.getDatasInicioFim(TIMESHEETS)
-    periodoDia, demora = DATE_CLASS.periodoDiaForTemplateColaborador, DATE_CLASS.demoraForTemplateColaborador
+    periodoDia, demora = DATE_CLASS.PERIODO_DIA_FOR_TEMPLATE_COLABORADOR, DATE_CLASS.DEMORA_FOR_TEMPLATE_COLABORADOR
     
     corpo = f"""
     {periodoDia}, {colaborador}!
 
     Observamos que o seu time card de {dataInicioFormatada} à {dataFimFormatada}{demora}não foi submetido, por favor regularize o mais breve possível.
-    Caso não tenha trabalhado durante o período descrito acima, desconside este e-mail.
+    Caso não tenha trabalhado durante o período descrito acima, desconsidere este e-mail.
 
     Gerado por automação. NÃO RESPONDA ESTE EMAIL - EM CASO DE DÚVIDAS, CONTATAR O RH OU SEU(SUA) GESTOR(A).
 
@@ -106,7 +106,7 @@ def templateCobrancaColaborador(colaborador):
     return corpo
 
 def getUpperCaseUserName(lowerCaseUserName):
-    fullDisplayUserNames = API_CLASS.fullDisplayUserNames
+    fullDisplayUserNames = API_CLASS.FULLDISPLAY_USERNAMES
     name_mapping = {}
 
     for item in fullDisplayUserNames:
