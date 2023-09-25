@@ -16,22 +16,16 @@ class UserGroups:
         submittedUsers = []
         for timeSheet in DATA_TIMESHEETS["results"]:
             usernameIntimeSheet = timeSheet["USERNAME"]
-            if timeSheet["TIME_STATUS_NAME"] == "Submitted":
+            if timeSheet["TIME_STATUS_NAME"] == "Submitted" and usernameIntimeSheet in userNames:
                 submittedUsers.append(usernameIntimeSheet)
-        for name in submittedUsers:
-            if name not in userNames:
-                submittedUsers.remove(name)
         return submittedUsers
     
     def _getSubmittedAndApprovedUsers(self, userNames):
         submittedAndApprovedUsers = []
         for timeSheet in DATA_TIMESHEETS["results"]:
             userIntimeSheet = timeSheet["USERNAME"]
-            if timeSheet["TIME_STATUS_NAME"] == "Submitted" or timeSheet["TIME_STATUS_NAME"] == "Approved":
+            if (timeSheet["TIME_STATUS_NAME"] == "Submitted" or timeSheet["TIME_STATUS_NAME"] == "Approved") and userIntimeSheet in userNames:
                 submittedAndApprovedUsers.append(userIntimeSheet)
-        for name in submittedAndApprovedUsers:
-            if name not in userNames:
-                submittedAndApprovedUsers.remove(name)
         return submittedAndApprovedUsers
     
     def _getUnsubmittedUsers(self, userNames, submittedAndApprovedUsers):
@@ -43,7 +37,6 @@ class UserGroups:
         return unsubmittedUsers
     
     def _getFirstWeekTimesheet(self, diaPrimeiroMes, unsubmittedUsers):
-    
         i = diaPrimeiroMes
         quantidadeHorasEnviadasPrimeiraSemana = 0
         for timeSheet in DATA_TIMESHEETS["results"]:
@@ -73,9 +66,9 @@ class UserGroups:
 
         for item in fullDisplayUserNames:
             parts = item.split(" (")
-            nameMapping[parts[0]] = parts[1][:-1]
+            nameMapping[parts[0].lower()] = parts[1][:-1]
 
-        upperCaseNames = [nameMapping[name] for name in userGroup]
+        upperCaseNames = [nameMapping[name.lower()] for name in userGroup]
         
         return upperCaseNames
 
